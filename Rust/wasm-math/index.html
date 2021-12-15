@@ -9,7 +9,7 @@
     <script type="module">
       import init, {sqrt, square, power} from "./pkg/wasm_math.js";
 
-      function output(msg, showTime = false) {
+      function output(msg = "", showTime = false) {
         document.getElementById("output").insertAdjacentText("beforeend", `${showTime ? `[${performance.now()}] ` : ""}${msg}`);
         document.getElementById("output").insertAdjacentHTML("beforeend", `<br>`);
       }
@@ -32,6 +32,7 @@
         output(`JS: sqrt(1234567890) = ${Math.sqrt(1234567890)}`, true);
         output(`Testing WASM sqrt()`, true);
         output(`WASM: sqrt(1234567890) = ${sqrt(1234567890)}`, true);
+        output();
         let arr, t0;
 
         output(`Testing JS sqrt(n) from 1 to 1e+6`, true);
@@ -68,7 +69,7 @@
         t0 = performance.now();
         arr = [];
         for (let i = 0; i <= 1e+4; i++) {
-          arr.push(n * n);
+          arr.push(i * i);
         }
         output(`JS done, time: ${performance.now() - t0}`, true);
         output(`Testing WASM n ** 2 from 1 to 1e+4`, true);
