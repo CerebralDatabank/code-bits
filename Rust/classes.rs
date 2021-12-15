@@ -8,7 +8,7 @@ struct Point {
 
 impl Point {
     fn new(x: i32, y: i32) -> Point {
-        Point { x: x, y: y } // Shorthand for Point { x: x, y: y }
+        Point { x, y } // Shorthand for Point { x: x, y: y }
     }
 
     fn dist_to(&self, other: &Point) -> f64 {

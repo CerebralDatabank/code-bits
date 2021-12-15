@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>WASM Math Test</title>
+  </head>
+  <body>
+    <div id="output" style="background: #000; color: #CCC; border: 2px solid #222; padding: 10px; font: 14px 'Consolas', monospace;"></div>
+    <script type="module">
+      import init, {sqrt, square, power} from "./pkg/wasm_math.js";
+
+      function output(msg, showTime = false) {
+        document.getElementById("output").insertAdjacentText("beforeend", `${showTime ? `[${performance.now()}] ` : ""}${msg}`);
+        document.getElementById("output").insertAdjacentHTML("beforeend", `<br>`);
+      }
+
+      output("Initializing...");
+
+      init().then(() => {
+        output("Initialization complete");
+        output(`Square root of 225: ${sqrt(225)}`);
+        output("Measuring JS vs WASM (Rust) sqrt...");
+        output(`Testing JS sqrt()`, true);
+        output(`JS: sqrt(1234567890) = ${Math.sqrt(1234567890)}`, true);
+        output(`Testing WASM sqrt()`, true);
+        output(`WASM: sqrt(1234567890) = ${sqrt(1234567890)}`, true);
+        output(`Testing JS sqrt() from 1 to 1e+5`, true);
+        for (let i = 0; i < 1e+5; i++) {
+          Math.sqrt(i);
+        }
+        output(`JS done`, true);
+        output(`Testing WASM sqrt() from 1 to 1e+5`, true);
+        for (let i = 0; i < 1e+5; i++) {
+          sqrt(i);
+        }
+        output(`WASM done`, true);
+      })
+    </script>
+  </body>
+</html>

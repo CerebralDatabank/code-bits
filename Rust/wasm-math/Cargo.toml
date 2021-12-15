@@ -1,0 +1,12 @@
+[package]
+name = "wasm-math"
+version = "0.1.0"
+authors = ["Gopal Othayoth <24465111+CerebralDatabank@users.noreply.github.com>"]
+description = "A library containing some simple math operations in Rust/WebAssembly"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
