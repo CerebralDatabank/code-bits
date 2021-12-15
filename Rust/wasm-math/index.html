@@ -14,6 +14,14 @@
         document.getElementById("output").insertAdjacentHTML("beforeend", `<br>`);
       }
 
+      function jsPower(a, n) {
+        let result = 1;
+        for (let i = 0; i < n; i++) {
+          result *= a;
+        }
+        return result;
+      }
+
       output("Initializing...");
 
       init().then(() => {
@@ -24,16 +32,53 @@
         output(`JS: sqrt(1234567890) = ${Math.sqrt(1234567890)}`, true);
         output(`Testing WASM sqrt()`, true);
         output(`WASM: sqrt(1234567890) = ${sqrt(1234567890)}`, true);
-        output(`Testing JS sqrt() from 1 to 1e+5`, true);
-        for (let i = 0; i < 1e+5; i++) {
-          Math.sqrt(i);
+        let arr, t0;
+
+        output(`Testing JS sqrt(n) from 1 to 1e+6`, true);
+        t0 = performance.now();
+        arr = [];
+        for (let i = 0; i <= 1e+6; i++) {
+          arr.push(Math.sqrt(i));
         }
-        output(`JS done`, true);
-        output(`Testing WASM sqrt() from 1 to 1e+5`, true);
-        for (let i = 0; i < 1e+5; i++) {
-          sqrt(i);
+        output(`JS done, time: ${performance.now() - t0}`, true);
+        output(`Testing WASM sqrt(n) from 1 to 1e+6`, true);
+        t0 = performance.now();
+        arr = [];
+        for (let i = 0; i <= 1e+6; i++) {
+          arr.push(sqrt(i));
         }
-        output(`WASM done`, true);
+        output(`WASM done, time: ${performance.now() - t0}`, true);
+
+        output(`Testing JS 2 ** n from 1 to 1e+4`, true);
+        t0 = performance.now();
+        arr = [];
+        for (let i = 0; i <= 1e+4; i++) {
+          arr.push(jsPower(2, i));
+        }
+        output(`JS done, time: ${performance.now() - t0}`, true);
+        output(`Testing WASM 2 ** n from 1 to 1e+4`, true);
+        t0 = performance.now();
+        arr = [];
+        for (let i = 0; i <= 1e+4; i++) {
+          arr.push(power(2, i));
+        }
+        output(`WASM done, time: ${performance.now() - t0}`, true);
+
+        output(`Testing JS n ** 2 from 1 to 1e+4`, true);
+        t0 = performance.now();
+        arr = [];
+        for (let i = 0; i <= 1e+4; i++) {
+          arr.push(n * n);
+        }
+        output(`JS done, time: ${performance.now() - t0}`, true);
+        output(`Testing WASM n ** 2 from 1 to 1e+4`, true);
+        t0 = performance.now();
+        arr = [];
+        for (let i = 0; i <= 1e+4; i++) {
+          arr.push(square(i, 2));
+        }
+        output(`WASM done, time: ${performance.now() - t0}`, true);
+        arr = [];
       })
     </script>
   </body>
