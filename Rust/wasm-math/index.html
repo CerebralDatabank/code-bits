@@ -26,6 +26,7 @@
 
       init().then(() => {
         output("Initialization complete");
+        output("Testing start");
         output(`Square root of 225: ${sqrt(225)}`);
         output("Measuring JS vs WASM (Rust) sqrt...");
         output(`Testing JS sqrt()`, true);
@@ -49,6 +50,7 @@
           arr.push(sqrt(i));
         }
         output(`WASM done, time: ${performance.now() - t0}`, true);
+        output();
 
         output(`Testing JS 2 ** n from 1 to 1e+4`, true);
         t0 = performance.now();
@@ -64,6 +66,7 @@
           arr.push(power(2, i));
         }
         output(`WASM done, time: ${performance.now() - t0}`, true);
+        output();
 
         output(`Testing JS n ** 2 from 1 to 1e+4`, true);
         t0 = performance.now();
@@ -79,6 +82,7 @@
           arr.push(square(i, 2));
         }
         output(`WASM done, time: ${performance.now() - t0}`, true);
+        output("Testing done");
         arr = [];
       })
     </script>
