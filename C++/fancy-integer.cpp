@@ -70,7 +70,7 @@ int main() {
     cout << anotherOne.getValueAddr() << endl;
 
     // Copy assignment operator (rule 3 of 3)
-    fancyInt = anotherOne;
+    anotherOne = fancyInt;
     // memory with 5555 deallocated; int* in fancyInt now points
     // to another region of memory with 1337 in it
     cout << anotherOne.getValue() << endl;
