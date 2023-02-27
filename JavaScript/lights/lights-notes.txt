@@ -1,0 +1,32 @@
+            i   j
+1st Person (0): 0,  1,  2,  3,  4,  5
+2nd Person (1): 1,  3,  5,  7,  9, 11
+3rd Person (2): 2,  5,  8, 11, 14, 17
+4th Person (3): 3,  7, 11, 15, 19, 23
+
+Subtracting i from each j list:
+ i  j
+(0) 0,  0,  1,  2, ...
+(1) 0,  2,  4,  6, ...
+(2) 0,  3,  6,  9, ...
+(3) 0,  4,  8,  12, ...
+
+bool validJ(i, j):
+  return (j - i) % (i + 1) is 0
+
+equal to: (j + 1) % (i + 1) is 0
+
+
+
+
+Simplify bool ? !e : e
+
+bool e res
+0    0   0
+0    1   1
+1    0   1
+1    1   0
+
+bool XOR e
+or
+bool != e
