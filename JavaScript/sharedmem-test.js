@@ -2,14 +2,6 @@ const {Worker, isMainThread, parentPort, workerData} = require("worker_threads")
 
 const NUM_THREADS = 100;
 
-/*
-let mem = new WebAssembly.Memory({
-  initial: 1,
-  maximum: 1,
-  shared: true
-});
-let buffer = mem.buffer;
-*/
 let buffer = new SharedArrayBuffer(2048);
 
 let workers = [];
