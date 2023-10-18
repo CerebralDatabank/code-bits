@@ -52,7 +52,7 @@ else
 fi
 printf '\n'
 
-infoprint 'Go to https://console.cloud.google.com/ in a browser'
+infoprint 'Go to https://console.cloud.google.com/ in a browser (Compute Engine -> VM instances)'
 infoprint 'Take note of the \x1B[93mName\x1B[m and \x1B[93mZone\x1B[m columns of the VM'
 read -p $'Enter the \x1B[93mName\x1B[m: \x1B[96m' vm_name < /dev/tty
 read -p $'\x1B[mEnter the \x1B[93mZone\x1B[m: \x1B[96m' vm_zone < /dev/tty
