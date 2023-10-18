@@ -47,7 +47,7 @@ else
     printf '\u2501\u2501\u2501\u252B $ gcloud auth list \u2523\u2501\u2501\u2501\n'
     su -c 'gcloud auth list' "$username"
     printf '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'
-    infoprint 'If you don't see your account there, quit this script with Ctrl-C and run: \x1B[93mgcloud auth login\x1B[m'
+    infoprint "If you don't see your account there, quit this script with Ctrl-C and run: \x1B[93mgcloud auth login\x1B[m"
     read -p 'Press Enter to continue...' < /dev/tty
 fi
 printf '\n'
