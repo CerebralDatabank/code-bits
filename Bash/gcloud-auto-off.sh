@@ -32,6 +32,38 @@ fi
 read -p $'\x1B[mEnter your Linux username (shown in CLI prompt): \x1B[96m' username < /dev/tty
 printf '\x1B[m'
 
+printf 'Options:\n1) Install\n2) Remove\n'
+read -p $'Enter a number: \x1B[96m' -n 1 choice < /dev/tty
+printf '\x1B[m\n\n'
+
+if [[ "$choice" == '2' ]]; then
+    infoprint 'Removing Auto-Shutdown Service...'
+    systemctl stop auto-off.timer
+    checkerr 'Stopped systemd timer' 'Failed to stop systemd timer'
+    systemctl disable auto-off.timer
+    checkerr 'Disabled systemd timer' 'Failed to disable systemd timer'
+    systemctl stop auto-off.service
+    checkerr 'Stopped systemd service' 'Failed to stop systemd service'
+    rm /etc/systemd/system/auto-off.service
+    checkerr 'Removed systemd service file' 'Failed to remove systemd service file'
+    rm /etc/systemd/system/auto-off.timer
+    checkerr 'Removed systemd timer file' 'Failed to remove systemd timer file'
+    systemctl daemon-reload
+    checkerr 'systemd daemon configuration reloaded' 'Failed to reload systemd daemon configuration'
+    systemctl reset-failed
+    checkerr 'Reset systemd fail states' 'Failed to reset systemd fail states'
+    rm -r "/home/$username/auto-off/"
+    checkerr 'Removed auto-off scripts' 'Failed to remove auto-off scripts'
+    okprint 'All done!'
+    break
+    exit
+elif [[ "$choice" == '1' ]]; then
+    infoprint 'Installing Auto-Shutdown Service...'
+else
+    failprint 'Invalid option; exiting.'
+    exit
+fi
+
 if ! type gcloud &> /dev/null; then
     infoprint 'gcloud not found; installing (snap)...'
     snap install google-cloud-cli --classic
@@ -118,8 +150,6 @@ EOF
 checkerr 'Created systemd timer file' 'Failed to create systemd timer file'
 systemctl daemon-reload
 checkerr 'systemd daemon configuration reloaded' 'Failed to reload systemd daemon configuration'
-systemctl enable auto-off.service > /dev/null
-checkerr 'Enabled systemd service' 'Failed to enable systemd service'
 systemctl enable auto-off.timer > /dev/null
 checkerr 'Enabled systemd timer' 'Failed to enable systemd timer'
 systemctl start auto-off.timer > /dev/null
