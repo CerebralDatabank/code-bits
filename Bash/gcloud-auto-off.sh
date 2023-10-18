@@ -101,7 +101,7 @@ ExecStart=/home/$username/auto-off/auto-off.sh
 EOF
 checkerr 'Created systemd service file' 'Failed to create systemd service file'
 
-read -p $'Enter the time interval for the auto-shutdown check\n(30min recommended, DO NOT make it too low)\nEnter time interval: \x1B[96m' chk_itvl < /dev/tty
+read -p $'Enter the time interval for the auto-shutdown check\nSupports min = minutes, h = hours, d = days\n(30min recommended, DO NOT make it too low)\nEnter time interval: \x1B[96m' chk_itvl < /dev/tty
 printf '\x1B[m'
 
 cat <<EOF > /etc/systemd/system/auto-off.timer
