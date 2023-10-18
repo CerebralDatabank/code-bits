@@ -109,7 +109,7 @@ cat <<EOF > /etc/systemd/system/auto-off.timer
 Description=Automatically shut down VM if user is not logged in
 
 [Timer]
-OnBootSec=$chk_itvl
+OnStartupSec=$chk_itvl
 OnUnitActiveSec=$chk_itvl
 
 [Install]
