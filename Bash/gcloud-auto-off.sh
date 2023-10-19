@@ -22,8 +22,7 @@ function infoprint() {
 }
 
 printf '\n\x1B[96;1;4mCSCE 410 VM Auto-Shutdown Service\x1B[m\n'
-printf '\x1B[3mAdds a systemd timer to shutdown the system if no users are logged in via SSH\x1B[m\n'
-printf '\x1B[3m(option to automatically remove the service coming soon)\x1B[m\n\n'
+printf '\x1B[3mAdds a systemd timer to shutdown the system if no users are logged in via SSH\x1B[m\n\n'
 if [[ "$(whoami)" != "root" ]]; then
     failprint 'Must be run as root (use sudo)'
     exit
