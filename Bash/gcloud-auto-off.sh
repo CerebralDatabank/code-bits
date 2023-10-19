@@ -53,6 +53,8 @@ if [[ "$choice" == '2' ]]; then
     checkerr 'Reset systemd fail states' 'Failed to reset systemd fail states'
     rm -r "/home/$username/auto-off/"
     checkerr 'Removed auto-off scripts' 'Failed to remove auto-off scripts'
+    sed -i "/alias off='~/auto-off/off.sh'/d" "/home/$username/.bashrc"
+    checkerr 'Removed off command alias in ~/.bashrc' 'Failed to remove off command alias in ~/.bashrc'
     okprint 'All done!'
     exit
 elif [[ "$choice" == '1' ]]; then
