@@ -55,7 +55,6 @@ if [[ "$choice" == '2' ]]; then
     rm -r "/home/$username/auto-off/"
     checkerr 'Removed auto-off scripts' 'Failed to remove auto-off scripts'
     okprint 'All done!'
-    break
     exit
 elif [[ "$choice" == '1' ]]; then
     infoprint 'Installing Auto-Shutdown Service...'
