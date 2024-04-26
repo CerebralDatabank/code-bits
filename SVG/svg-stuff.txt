@@ -1,0 +1,152 @@
+DUOTONE
+
+Dark purple: 0.38 0 0.38
+Bright orange: 1 0.65 0
+
+Example SVG:
+<svg style="display: none;">
+  <filter id="duotone">
+    <feColorMatrix type="matrix" values="
+      0.72 0 0 0 0.28
+      1 0 0 0 0
+      0.18 0 0 0 0.28
+      0 0 0 1 0
+    " />
+  </filter>
+</svg>
+<style>
+  :root {
+    filter: grayscale() url(#duotone);
+  }
+</style>
+
+GLASS EFFECT
+
+<svg style="display: none;">
+  <defs>
+    <filter id="glass">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="1" result="turb"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turb" xChannelSelector="R" yChannelSelector="G" scale="50"></feDisplacementMap>
+    </filter>
+  </defs>
+</svg>
+<style>
+  :root {
+    height: 100vh;
+    filter: url(#glass);
+    overflow: hidden;
+  }
+  body {
+    height: 100vh;
+    overflow: auto !important;
+    position: relative;
+  }
+</style>
+
+Alternate display:
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: url(#glass); z-index: 1000000000; pointer-events: none;"></div>
+
+VHS/VCR EFFECT
+
+<div>
+  <style>
+    .vcr-osd {
+      font: 72px "VCR OSD Mono";
+      z-index: 999999999;
+      color: #EEE;
+      -webkit-text-stroke: 2px #000;
+      pointer-events: none;
+    }
+    .vcr-osd-block {
+      background: #EEE;
+      color: transparent;
+      box-shadow: 0 0 0 2px #000 inset;
+    }
+  </style>
+  <div class="vcr-osd" style="position: fixed; top: 50px; left: 50px;">CH 01</div>
+  <div class="vcr-osd" style="position: fixed; bottom: 50px; left: 50px;">SLP<br>&#x25BA; PLAY</div>
+  <div class="vcr-osd" style="position: fixed; top: 50px; right: 50px;">DECK 1</div>
+  <div class="vcr-osd" style="position: fixed; bottom: 50px; right: 50px;">--:--:--</div>
+</div>
+
+<div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh; pointer-events: none; backdrop-filter: url('#vhs'); z-index: 99999999;" id="foocov"></div>
+<svg style="display: none;">
+  <defs>
+    <filter id="vhs">
+      <feTurbulence type="turbulence" baseFrequency="0 0.001" numOctaves="2" result="turb" id="foofil" seed="494"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turb" xChannelSelector="R" yChannelSelector="G" scale="20"></feDisplacementMap>
+    </filter>
+  </defs>
+</svg>
+
+JS:
+let foo = setInterval(() => {
+    document.getElementById("foocov").style.filter = "none";
+    document.getElementById("foofil").setAttribute("seed", Math.floor(Math.random() * 1000));
+    document.getElementById("foocov").style.filter = "url(#vhs)";
+}, 100);
+
+CHROMATIC ABERRATION
+
+<div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh; pointer-events: none; backdrop-filter: url('#chrabr'); z-index: 99999999;" id="chrabr-cov"></div>
+<svg style="display: none;">
+  <defs>
+    <filter id="chrabr">
+      <feOffset in="SourceGraphic" dx="-4" dy="0" result="left" />
+      <feOffset in="SourceGraphic" dx="4" dy="0" result="right" />
+      <feColorMatrix values="
+        1 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 1 0
+      " in="left" result="leftred" />
+      <feColorMatrix values="
+        0 0 0 0 0
+        0 1 0 0 0
+        0 0 0 0 0
+        0 0 0 1 0
+      " in="SourceGraphic" result="midgreen" />
+      <feColorMatrix values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 1 0 0
+        0 0 0 1 0
+      " in="right" result="rightblue" />
+      <feBlend in="midgreen" in2="leftred" mode="screen" result="redgreen" />
+      <feBlend in="rightblue" in2="redgreen" mode="screen" />
+    </filter>
+  </defs>
+</svg>
+
+
+CHROMATIC ABERRATION OLD NOT WORKING
+
+<div style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh; pointer-events: none; backdrop-filter: url('#chrabr'); z-index: 99999999;" id="chrabr-cov"></div>
+<svg style="display: none;">
+  <defs>
+    <filter id="chrabr">
+      <feColorMatrix values="
+        1 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 1 0
+      " in="SourceGraphic" result="red" />
+      <feColorMatrix values="
+        0 0 0 0 0
+        0 1 0 0 0
+        0 0 0 0 0
+        0 0 0 1 0
+      " in="SourceGraphic" result="green" />
+      <feColorMatrix values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 1 0 0
+        0 0 0 1 0
+      " in="SourceGraphic" result="blue" />
+      <feOffset in="red" dx="-4" dy="0" result="redleft" />
+      <feOffset in="blue" dx="4" dy="0" result="blueright" />
+      <feBlend in="green" in2="redleft" mode="screen" result="redgreen" />
+      <feBlend in="blue" in2="redgreen" mode="screen" />
+    </filter>
+  </defs>
+</svg>
