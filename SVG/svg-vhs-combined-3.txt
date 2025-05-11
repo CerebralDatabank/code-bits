@@ -78,7 +78,7 @@ HTML:
     pointer-events: none;
   }
   @keyframes vhsbarmove {
-    0% {top: 0;}
+    0% {top: -32px;}
     100% {top: 100vh;}
   }
   .vcr-osd {
