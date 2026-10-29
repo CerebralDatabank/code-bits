@@ -100,8 +100,8 @@ HTML:
 
 <div class="cdb-vhs_full-cov" style="height: 32px; backdrop-filter: url(#cdb-vhs_vhsbar); z-index: 2140000000; animation: 10s linear 0s infinite cdb-vhs_vhsbarmove;"></div>
 <div class="cdb-vhs_full-cov" style="backdrop-filter: url(#cdb-vhs_vhsdist) url(#cdb-vhs_shake); z-index: 2140000050;" id="cdb-vhs_vhs-cov"></div>
-<div class="cdb-vhs_vcr-osd" style="position: fixed; top: 50px; left: 50px;">CH 01</div>
-<div class="cdb-vhs_vcr-osd" style="position: fixed; bottom: 50px; left: 50px;">SLP<br>PLAY&#x25BA;</div>
-<div class="cdb-vhs_vcr-osd" style="position: fixed; top: 50px; right: 50px; text-align: right;">DECK 1<br>TAPE</div>
+<div class="cdb-vhs_vcr-osd" style="position: fixed; top: 50px; left: 50px;">PLAY&#x25BA;<br>SLP</div>
+<div class="cdb-vhs_vcr-osd" style="position: fixed; bottom: 50px; left: 50px;">TAPE<br>DECK 1</div>
+<div class="cdb-vhs_vcr-osd" style="position: fixed; top: 50px; right: 50px; text-align: right;">CH 01</div>
 <div class="cdb-vhs_vcr-osd" style="position: fixed; bottom: 50px; right: 50px; text-align: right;">--:--</div>
 <div class="cdb-vhs_full-cov" style="backdrop-filter: url(#cdb-vhs_noise) url(#cdb-vhs_chrabr) blur(0.6px) saturate(0.75) url(#cdb-vhs_bulge); z-index: 2140000100;" id="cdb-vhs_all-cov"></div>
